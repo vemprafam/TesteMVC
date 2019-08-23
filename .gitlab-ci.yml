@@ -1,19 +1,37 @@
+
 stages:
     - build
 before_script:
   - 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
-job:
-    stage: build
-    script: '"C:\Program Files (x86)\MSBuild\15.0\Bin\MSBuild.exe" "TesteMVC.csproj"'
+
+# job:
+#     stage: build
+#     script: '"C:\Program Files (x86)\MSBuild\15.0\Bin\MSBuild.exe" "TesteMVC.csproj"'
+
 
 image : microsoft/dotnet:latest
+
 stages:
   - build
+  # - test
+
 before_script:
   - 'dotnet restore'
+
 build:
  stage: build
+#  variables:
+#     build_path: "$project/src/$project"
  script:
+  #- "cd $build_path"
   - 'dotnet build'
  only:
    - master
+
+# test:
+#   stage: test
+#   variables:
+#     test_path: "$project/test/$project.Tests"
+#   script:
+#     - "cd $test_path"
+#     - "dotnet test"
