@@ -39,8 +39,6 @@
 
 
 
-
-
 stages:
   - build
   - publish
@@ -88,4 +86,3 @@ develop_docker:
     ASSEMBLY_NAME: app
     TAG: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_PIPELINE_ID
 
-    
