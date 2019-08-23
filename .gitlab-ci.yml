@@ -107,8 +107,8 @@ build_job:
     # - branches
     - master
   script:
-    # - 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
-    - 'C:\Nuget\nuget.exe restore'
+    - 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
+    # - 'C:\Nuget\nuget.exe restore'
     - 'C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\msbuild.exe /p:Configuration=Release /clp:ErrorsOnly'
     - 'C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\msbuild.exe TesteMVC\TesteMVC.csproj /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=FolderProfile.pubxml'
   # artifacts:
