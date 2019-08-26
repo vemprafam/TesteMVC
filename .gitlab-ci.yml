@@ -34,28 +34,26 @@ build_job:
   script:
   #- "cd $build_path"
     - 'dotnet build'
-    #- 'dotnet publish /p:Configuration=Release' #/clp:ErrorsOnly'
+    - 'dotnet publish /p:Configuration=Release' #/clp:ErrorsOnly'
     #- 'dotnet build /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=FolderProfile.pubxml'
-    - 'dotnet publish --no-restore -c Release -o ".\TesteMVC\bin\Release\Publish\" ' #./docker/publish/
+    #- 'dotnet publish --no-restore -c Release -o ".\TesteMVC\bin\Release\Publish\" ' #./docker/publish/
 
   artifacts:
     expire_in: 2 days
     paths:
-      - '.\TesteMVC\bin\Release\Publish\'
+      #- '.\TesteMVC\bin\Release\Publish\'
+      - '.\TesteMVC\bin\Release\netcoreapp2.2\publish\'
       #- '$env:UNITTEST_FOLDER'
       #- '.\$env:XUNIT_PATH\*.*'
 
 
 deploy_job:
   stage: deploy
-#  variables:
-#     build_path: "$project/src/$project"
   only:
     - master
   script:
-  #- "cd $build_path"
-    - 'dotnet build'
-    - 'xcopy /y /s ".\TesteMVC\bin\Release\Publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
+    #- 'xcopy /y /s ".\TesteMVC\bin\Release\Publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
+    - 'xcopy /y /s ".\TesteMVC\bin\Release\netcoreapp2.2\publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
   dependencies:
     - build_job
 
