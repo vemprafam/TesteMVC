@@ -79,7 +79,7 @@ develop_build:
 develop_docker:
   <<: *docker_template
   only:
-    - develop
+    - master
   dependencies:
     - develop_build
   variables:
