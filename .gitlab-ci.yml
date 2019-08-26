@@ -58,7 +58,7 @@ stages:
 develop_build:
   <<: *build_template
   only:
-   - develop
+    - master
   artifacts:
     expire_in: 1 day
     paths:
