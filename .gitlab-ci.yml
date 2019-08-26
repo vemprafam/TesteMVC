@@ -21,7 +21,7 @@ stages:
   # - test
 
 before_script:
-  - 'nuget.exe restore'
+  - 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
   - 'dotnet restore'
 
 
