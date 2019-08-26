@@ -17,8 +17,9 @@ before_script:
 
 stages:
   - build
+  #- test
   #- deploy
-  # - test
+
 
 before_script:
   - 'dotnet restore'
@@ -35,8 +36,14 @@ build_job:
     - 'dotnet build'
     - 'dotnet build /p:Configuration=Release /clp:ErrorsOnly'
     - 'dotnet build /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=FolderProfile.pubxml'
+  artifacts:
+    expire_in: 2 days
+    paths:
+      - '.\TesteMVC\bin\Release\Publish\'
+      #- '$env:UNITTEST_FOLDER'
+      #- '.\$env:XUNIT_PATH\*.*'
 
-
+      
 # deploy_job:
 #   stage: deploy
 # #  variables:
@@ -46,6 +53,7 @@ build_job:
 #   script:
 #   #- "cd $build_path"
 #     - 'dotnet build'
+#     - 'xcopy /y /s ".\TesteMVC\bin\Release\Publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
 #   dependencies:
 #     - build_job
 
