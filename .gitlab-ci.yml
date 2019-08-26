@@ -76,10 +76,10 @@ develop_build:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker push $TAG
 
- develop_docker:
-   <<: *docker_template
-   only:
-     - master
+develop_docker:
+  <<: *docker_template
+  only:
+    - master
   dependencies:
     - develop_build
   variables:
