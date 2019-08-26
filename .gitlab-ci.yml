@@ -17,7 +17,7 @@ stages:
   - build
   #- test
   #- deploy
-  #- publish
+  - publish
 
 
 #before_script:
@@ -80,11 +80,11 @@ develop_build:
    <<: *docker_template
    only:
      - master
-#   dependencies:
-#     - develop_build
-#   variables:
-#     ASSEMBLY_NAME: app
-#     TAG: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_PIPELINE_ID
+  dependencies:
+    - develop_build
+  variables:
+    ASSEMBLY_NAME: app
+    TAG: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_PIPELINE_ID
 
 
   
