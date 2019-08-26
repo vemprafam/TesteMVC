@@ -1,4 +1,4 @@
-# MinhaTrilha - Johnny LB
+# TesteMVC - Johnny LB
 
 image : microsoft/dotnet:latest
 
@@ -18,7 +18,7 @@ before_script:
 stages:
   - build
   #- test
-  #- deploy
+  - deploy
 
 
 before_script:
@@ -36,7 +36,7 @@ build_job:
     - 'dotnet build'
     #- 'dotnet publish /p:Configuration=Release' #/clp:ErrorsOnly'
     #- 'dotnet build /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=FolderProfile.pubxml'
-    - 'dotnet publish --no-restore -c Release -o .\TesteMVC\bin\Release\Publish\' #./docker/publish/
+    - 'dotnet publish --no-restore -c Release -o ".\TesteMVC\bin\Release\Publish\" ' #./docker/publish/
 
   artifacts:
     expire_in: 2 days
@@ -46,18 +46,18 @@ build_job:
       #- '.\$env:XUNIT_PATH\*.*'
 
 
-# deploy_job:
-#   stage: deploy
-# #  variables:
-# #     build_path: "$project/src/$project"
-#   only:
-#     - master
-#   script:
-#   #- "cd $build_path"
-#     - 'dotnet build'
-#     - 'xcopy /y /s ".\TesteMVC\bin\Release\Publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
-#   dependencies:
-#     - build_job
+deploy_job:
+  stage: deploy
+#  variables:
+#     build_path: "$project/src/$project"
+  only:
+    - master
+  script:
+  #- "cd $build_path"
+    - 'dotnet build'
+    - 'xcopy /y /s ".\TesteMVC\bin\Release\Publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
+  dependencies:
+    - build_job
 
 
 # test:
