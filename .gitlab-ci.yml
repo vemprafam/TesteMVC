@@ -18,7 +18,7 @@ before_script:
 stages:
   - build
   #- test
-  - deploy
+  #- deploy
 
 
 before_script:
@@ -37,25 +37,24 @@ build_job:
     - 'dotnet publish /p:Configuration=Release' #/clp:ErrorsOnly'
     #- 'dotnet build /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=FolderProfile.pubxml'
     #- 'dotnet publish --no-restore -c Release -o ".\TesteMVC\bin\Release\Publish\" ' #./docker/publish/
+  # artifacts:
+  #   expire_in: 2 days
+  #   paths:
+  #     #- '.\TesteMVC\bin\Release\Publish\'
+  #     - '\builds\vemprafam\TesteMVC\bin\Release\netcoreapp2.2\publish\'
+  #     #- '$env:UNITTEST_FOLDER'
+  #     #- '.\$env:XUNIT_PATH\*.*'
 
-  artifacts:
-    expire_in: 2 days
-    paths:
-      #- '.\TesteMVC\bin\Release\Publish\'
-      - '\builds\vemprafam\TesteMVC\bin\Release\netcoreapp2.2\publish\'
-      #- '$env:UNITTEST_FOLDER'
-      #- '.\$env:XUNIT_PATH\*.*'
 
-
-deploy_job:
-  stage: deploy
-  only:
-    - master
-  script:
-    #- 'xcopy /y /s ".\TesteMVC\bin\Release\Publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
-    - 'cp "\builds\vemprafam\TesteMVC\bin\Release\netcoreapp2.2\publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
-  dependencies:
-    - build_job
+# deploy_job:
+#   stage: deploy
+#   only:
+#     - master
+#   script:
+#     #- 'xcopy /y /s ".\TesteMVC\bin\Release\Publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
+#     - 'cp "\builds\vemprafam\TesteMVC\bin\Release\netcoreapp2.2\publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
+#   dependencies:
+#     - build_job
 
 
 # test:
