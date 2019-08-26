@@ -68,7 +68,7 @@ develop_build:
   image: docker:stable-dind
   script:
     - mkdir docker/app/
-    - mv docker/publish/$ASSEMBLY_NAME.* docker/app/
+    #- mv docker/publish/$ASSEMBLY_NAME.* docker/app/
     - mv docker/publish/*.config docker/app/
     - mv docker/publish/*.json docker/app/
     - cp Dockerfile docker/
