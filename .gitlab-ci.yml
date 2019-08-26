@@ -2,12 +2,12 @@
 
 image : microsoft/dotnet:latest
 
-# stages:
-#   - build
+stages:
+  - build
 
-# before_script:
-#   #- 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
-#   - 'nuget.exe restore'
+before_script:
+  #- 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
+  - 'nuget.exe restore'
 
 #  job:
 #      stage: build
@@ -21,7 +21,6 @@ stages:
   # - test
 
 before_script:
-  - 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
   - 'dotnet restore'
 
 
