@@ -33,12 +33,12 @@ stages:
 #     build_path: "$project/src/$project"
   #only:
   #  - master
-  cache:
-    key: "$CI_PROJECT_NAMESPACE-$CI_PROJECT_NAME"
-    paths:
-      - .nuget/
+  # cache:
+  #   key: "$CI_PROJECT_NAMESPACE-$CI_PROJECT_NAME"
+  #   paths:
+  #     - .nuget/
   script:
-    - dotnet restore -s https://api.nuget.org/v3/index.json --packages ./.nuget/
+    - dotnet restore #-s https://api.nuget.org/v3/index.json --packages ./.nuget/
     - dotnet publish --no-restore -c Release -o ./docker/publish/    
 
   #- "cd $build_path"
@@ -60,7 +60,7 @@ develop_build:
   only:
     - master
   artifacts:
-    expire_in: 1 day
+    expire_in: 2 day
     paths:
       - docker/
 
