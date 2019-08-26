@@ -1,6 +1,6 @@
 
 stages:
-    - build
+  - build
 
 before_script:
   - 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
@@ -9,8 +9,8 @@ before_script:
 #     stage: build
 #     script: '"C:\Program Files (x86)\MSBuild\15.0\Bin\MSBuild.exe" "TesteMVC.csproj"'
 
-
-image : microsoft/dotnet:latest
+  #image : microsoft/dotnet:latest
+  image : microsoft/dotnet:2.2-sdk-alpine
 
 stages:
   - build
