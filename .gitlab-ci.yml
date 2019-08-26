@@ -1,12 +1,13 @@
+# MinhaTrilha - Johnny LB
 
 image : microsoft/dotnet:latest
 
-stages:
-    - build
+# stages:
+#   - build
 
-before_script:
-  #- 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
-   - 'nuget.exe restore'
+# before_script:
+#   #- 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
+#   - 'nuget.exe restore'
 
 #  job:
 #      stage: build
@@ -16,21 +17,39 @@ before_script:
 
 stages:
   - build
+  #- deploy
   # - test
 
 before_script:
+  - 'nuget.exe restore'
   - 'dotnet restore'
 
 
 build_job:
- stage: build
+  stage: build
 #  variables:
 #     build_path: "$project/src/$project"
- script:
+  only:
+    - master
+  script:
   #- "cd $build_path"
-  - 'dotnet build'
- only:
-   - master
+    - 'dotnet build'
+    - 'dotnet build /p:Configuration=Release /clp:ErrorsOnly'
+    - 'dotnet build /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=FolderProfile.pubxml'
+
+
+# deploy_job:
+#   stage: deploy
+# #  variables:
+# #     build_path: "$project/src/$project"
+#   only:
+#     - master
+#   script:
+#   #- "cd $build_path"
+#     - 'dotnet build'
+#   dependencies:
+#     - build_job
+
 
 # test:
 #   stage: test
