@@ -1,18 +1,18 @@
 
+image : microsoft/dotnet:latest
+
 stages:
     - build
 
 before_script:
-  - 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
+  #- 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
+  # - 'nuget.exe restore'
 
 #  job:
 #      stage: build
 #      #script: '"C:\Program Files (x86)\MSBuild\15.0\Bin\MSBuild.exe" "TesteMVC.csproj"'
 #      script: 
 #       - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\msbuild.exe" "TesteMVC.csproj"'
-
-
-image : microsoft/dotnet:latest
 
 stages:
   - build
@@ -21,7 +21,8 @@ stages:
 before_script:
   - 'dotnet restore'
 
-build:
+  
+build_job:
  stage: build
 #  variables:
 #     build_path: "$project/src/$project"
@@ -38,6 +39,66 @@ build:
 #   script:
 #     - "cd $test_path"
 #     - "dotnet test"
+
+
+
+
+
+# image : microsoft/dotnet:latest
+
+# variables:
+#   # NUGET_PATH: 'C:\Tools\Nuget\nuget.exe'
+#   # MSBUILD_PATH: 'C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\msbuild.exe'
+#   # XUNIT_PATH: packages\xunit.runner.console.2.3.1\tools\net452
+#   # UNITTEST_FOLDER: '.\tests\TesteMVC.Tests\bin\Release\'
+
+#  stages:
+#    - build
+# #   # - test
+# #   - deploy
+
+#  build_job:
+#    stage: build
+#    only:
+# #     # - branches
+#      - master
+#    script:
+#      - 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
+#     # - 'C:\Nuget\nuget.exe restore'
+#     - 'C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\msbuild.exe /p:Configuration=Release /clp:ErrorsOnly'
+#     - 'C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\msbuild.exe TesteMVC\TesteMVC.csproj /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=FolderProfile.pubxml'
+#   # artifacts:
+#   #   expire_in: 2 days
+#   #   paths:
+#   #     - '.\TesteMVC\bin\Release\Publish\'
+#   #     - '$env:UNITTEST_FOLDER'
+#   #     - '.\$env:XUNIT_PATH\*.*'
+
+# # test_job:
+# #   stage: test
+# #   only:
+# #     - branches
+# #   script:
+# #     - '& "$env:XUNIT_PATH\xunit.console.exe" "$env:UNITTEST_FOLDER\CiCdExample.Tests.dll"'
+# #   dependencies:
+# #     - build_job
+
+# deploy_job:
+#   stage: deploy
+#   only:
+#     # - branches
+#     - master
+#   script:
+#     - 'xcopy /y /s ".\TesteMVC\bin\Release\Publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
+#   dependencies:
+#     - build_job
+#     # - test_job
+
+
+
+
+
+
 
 
 
@@ -90,53 +151,4 @@ build:
 
 
 
-
-
-# variables:
-#   # NUGET_PATH: 'C:\Tools\Nuget\nuget.exe'
-#   # MSBUILD_PATH: 'C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\msbuild.exe'
-#   # XUNIT_PATH: packages\xunit.runner.console.2.3.1\tools\net452
-#   # UNITTEST_FOLDER: '.\tests\TesteMVC.Tests\bin\Release\'
-
-# stages:
-#   - build
-#   # - test
-#   - deploy
-
-# build_job:
-#   stage: build
-#   only:
-#     # - branches
-#     - master
-#   script:
-#     - 'C:\Nuget\nuget.exe restore TesteMVC.csproj'
-#     # - 'C:\Nuget\nuget.exe restore'
-#     - 'C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\msbuild.exe /p:Configuration=Release /clp:ErrorsOnly'
-#     - 'C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\msbuild.exe TesteMVC\TesteMVC.csproj /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=FolderProfile.pubxml'
-#   # artifacts:
-#   #   expire_in: 2 days
-#   #   paths:
-#   #     - '.\TesteMVC\bin\Release\Publish\'
-#   #     - '$env:UNITTEST_FOLDER'
-#   #     - '.\$env:XUNIT_PATH\*.*'
-
-# # test_job:
-# #   stage: test
-# #   only:
-# #     - branches
-# #   script:
-# #     - '& "$env:XUNIT_PATH\xunit.console.exe" "$env:UNITTEST_FOLDER\CiCdExample.Tests.dll"'
-# #   dependencies:
-# #     - build_job
-
-# deploy_job:
-#   stage: deploy
-#   only:
-#     # - branches
-#     - master
-#   script:
-#     - 'xcopy /y /s ".\TesteMVC\bin\Release\Publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
-#   dependencies:
-#     - build_job
-#     # - test_job
 
