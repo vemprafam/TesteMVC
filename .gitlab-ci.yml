@@ -42,7 +42,7 @@ build_job:
     expire_in: 2 days
     paths:
       #- '.\TesteMVC\bin\Release\Publish\'
-      - '.\TesteMVC\bin\Release\netcoreapp2.2\publish\'
+      - '\builds\vemprafam\TesteMVC\bin\Release\netcoreapp2.2\publish\'
       #- '$env:UNITTEST_FOLDER'
       #- '.\$env:XUNIT_PATH\*.*'
 
@@ -53,7 +53,7 @@ deploy_job:
     - master
   script:
     #- 'xcopy /y /s ".\TesteMVC\bin\Release\Publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
-    - 'xcopy /y /s ".\TesteMVC\bin\Release\netcoreapp2.2\publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
+    - 'cp "\builds\vemprafam\TesteMVC\bin\Release\netcoreapp2.2\publish\*.*" "C:\inetpub\wwwroot\TesteMVC"'
   dependencies:
     - build_job
 
@@ -69,8 +69,6 @@ deploy_job:
 
 
 
-
-# image : microsoft/dotnet:latest
 
 # variables:
 #   # NUGET_PATH: 'C:\Tools\Nuget\nuget.exe'
