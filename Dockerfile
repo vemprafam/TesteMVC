@@ -1,5 +1,8 @@
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ef2acca71c3615cda6ab36ef63e0b4ce39e1ff91
 # https://gitlab.com/jelleverheyen/cd-example/container_registry
 # https://medium.com/faun/building-a-docker-image-with-gitlab-ci-and-net-core-8f59681a86c4
 

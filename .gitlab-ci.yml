@@ -64,6 +64,39 @@ develop_build:
     paths:
       - docker/
 
+
+# .docker: &docker_template
+#   stage: publish
+#   image: docker:stable-dind
+#   #before_script:
+#   #  - docker login registry.gitlab.com -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD}  
+#   script:
+#     - mkdir docker/app/
+#     #- mv docker/publish/$ASSEMBLY_NAME.* docker/app/
+#     - mv docker/publish/*.config docker/app/
+#     - mv docker/publish/*.json docker/app/
+#     - cp Dockerfile docker/
+#     - docker info
+#     - docker build -t $TAG ./docker/
+#     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+#     - docker push $TAG
+#     # - docker build -t ${CI_REGISTRY}/${CI_PROJECT_PATH}:latest .
+#     # - docker push ${CI_REGISTRY}/${CI_PROJECT_PATH}:latest
+#   #after_script:
+#   #  - docker logout ${CI_REGISTRY}
+
+# develop_docker:
+#   <<: *docker_template
+#   only:
+#     - develop
+#   dependencies:
+#     - develop_build
+#   variables:
+#     ASSEMBLY_NAME: app
+#     TAG: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_PIPELINE_ID
+
+
+
       
 
 # .docker: &docker_template
