@@ -24,14 +24,14 @@ stages:
   #- 'dotnet restore'
 
 
-build_job:
+.build_job: &build_template
   stage: build
   image: microsoft/dotnet:2.2-sdk-alpine
   #image: microsoft/dotnet:latest
 #  variables:
 #     build_path: "$project/src/$project"
-  only:
-    - master
+  #only:
+  #  - master
   cache:
     key: "$CI_PROJECT_NAMESPACE-$CI_PROJECT_NAME"
     paths:
@@ -53,6 +53,14 @@ build_job:
   #     #- '$env:UNITTEST_FOLDER'
   #     #- '.\$env:XUNIT_PATH\*.*'
 
+develop_build:
+  <<: *build_template
+  #only:
+  #  - develop
+  # artifacts:
+  #   expire_in: 1 day
+  #   paths:
+  #     - docker/
 
   
 
