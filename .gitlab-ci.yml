@@ -64,6 +64,7 @@ develop_build:
     paths:
     #  - docker/
       - bin/
+      
 
 
 # .docker: &docker_template
